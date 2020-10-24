@@ -34,4 +34,3 @@ fun main() {
     val divisores = List(2, List(3, List(4, null)))
     divisiveis(dividendos, divisores).imprimir()
 }
-
