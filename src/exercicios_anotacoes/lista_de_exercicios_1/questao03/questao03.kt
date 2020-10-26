@@ -9,7 +9,7 @@ TODO: 3) Implemente a função de interseção entre duas listas, ou seja, que r
 class List<C>(val info: C?, val next: List<C>?){
     @JvmOverloads
     fun toString(lista: List<C>? = this): String{ return if (lista != null) "${lista.info}, ${toString(lista.next)}" else "" }
-    fun imprimir() { print(this.toString(this)) }
+    fun imprimir() { print("[${this.toString(this).substringBeforeLast(',')}]") }
     fun contains(e: C, lista: List<C>? = this): Boolean{
         return if(lista != null)
             if (e!!.equals(lista.info)) true else contains(e, lista.next)
