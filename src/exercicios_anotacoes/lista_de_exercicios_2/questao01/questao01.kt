@@ -13,7 +13,6 @@ class List<C>(val info: C?, val next: List<C>?){
     fun imprimir() { print("[${this.toString(this).substringBeforeLast(',')}]") }
 }
 
-
 /*
     fib(1) = 1
     fib(2) = 1
