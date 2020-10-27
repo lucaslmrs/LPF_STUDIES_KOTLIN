@@ -10,9 +10,10 @@ class List<C>(val info: C?, val next: List<C>?){
     @JvmOverloads
     fun toString(lista: List<C>? = this): String{ return if (lista != null) "${lista.info}, ${toString(lista.next)}" else "" }
     fun imprimir() { print("[${this.toString(this).substringBeforeLast(',')}]") }
-    fun contains(e: C, lista: List<C>? = this): Boolean{
-        return if(lista != null)
-            if (e!!.equals(lista.info)) true else contains(e, lista.next)
+
+    fun contains(e: C): Boolean{
+        return if (e == this.info) true
+        else if (this.next != null) this.next.contains(e)
         else false
     }
 }

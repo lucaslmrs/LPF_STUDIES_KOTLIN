@@ -10,16 +10,17 @@ TODO:
 class List(val info: Int?, val next: List?){
     @JvmOverloads
     fun toString(lista: List? = this): String{ return if (lista != null) "${lista.info}, ${toString(lista.next)}" else "" }
-    fun imprimir() { print(this.toString(this)) }
-}
-
-fun isDivisivel(number: Int, divisores: List?): Boolean{
-    if (divisores != null)
-        return if(number % divisores.info!! == 0) isDivisivel(number, divisores.next) else return false
-    else return true
+    fun imprimir() { print("[${this.toString(this).substringBeforeLast(',')}]") }
 }
 
 fun divisiveis(dividendos: List?, divisores: List?): List{
+
+    fun isDivisivel(number: Int, divisores: List?): Boolean{
+        if (divisores != null)
+            return if(number % divisores.info!! == 0) isDivisivel(number, divisores.next) else return false
+        else return true
+    }
+
     if (dividendos != null) {
         return if(isDivisivel(dividendos.info!!, divisores))
             List(dividendos.info, divisiveis(dividendos.next, divisores))

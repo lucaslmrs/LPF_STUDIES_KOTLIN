@@ -21,9 +21,9 @@ class Hash(val key: Char?, val info: Int?, val next: Hash?){
 
     fun imprimir() { println("{${this.toString(this).substringBeforeLast(',')}}") }
 
-    fun containsKey(e: Char, hash: Hash? = this): Boolean{
-        return if(hash != null)
-            if (e.equals(hash.key)) true else containsKey(e, hash.next)
+    fun containsKey(e: Char): Boolean{
+        return if (e == this.key) true
+        else if (this.next != null) this.next.containsKey(e)
         else false
     }
 

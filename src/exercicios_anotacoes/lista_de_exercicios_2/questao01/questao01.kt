@@ -21,18 +21,19 @@ class List<C>(val info: C?, val next: List<C>?){
     fib(n) = fib(n-1) + fib(n-2)
  */
 
-fun fibonacci(n: Int): Int{
-    return if(n == 1) 1
-    else if(n == 2) 1
-    else fibonacci(n-1) + fibonacci(n-2)
+fun fibonacciList(n: Int): List<Int>?{
+    fun fibonacci(n: Int): Int{
+        return if(n == 1) 1
+        else if(n == 2) 1
+        else fibonacci(n-1) + fibonacci(n-2)
+    }
+
+    fun percorreFib(n: Int, count: Int): List<Int>?{
+        return if (n >= count) List<Int>(fibonacci(count), percorreFib(n, count+1)) else null
+    }
+
+    return percorreFib(n, 1)
 }
-
-fun fibonacciList(n: Int): List<Int>?{ return percorreFib(n, 1) }
-
-fun percorreFib(n: Int, count: Int): List<Int>?{
-    return if (n >= count) List<Int>(fibonacci(count), percorreFib(n, count+1)) else null
-}
-
 
 fun main(){
     fibonacciList(20)!!.imprimir()
