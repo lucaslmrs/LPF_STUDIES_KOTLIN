@@ -33,21 +33,18 @@ fun filter(f: (Int)->Boolean, lista: List?): List?{
     } else null
 }
 
-fun threeFilters(f: (Int)->Boolean, g: (Int)->Boolean, h: (Int)->Boolean, lista: List?): Triple<List?, List?, List?>{
+fun threeFilters(lista: List?, f: (Int)->Boolean = {it%2 == 1}, g: (Int)->Boolean = {it%4 == 0},
+                 h: (Int)->Boolean = {!f(it) && !g(it)},): Triple<List?, List?, List?>{
     return Triple(filter(f, lista), filter(g, lista), filter(h, lista))
 }
 
 
 fun main(){
-    val f = {x:Int -> x%2 == 1} // impares
-    val g = {x:Int -> x%4 == 0} // divisiveis por 4
-    val h = {x:Int -> x%2 != 1 && x%4 != 0} // nem um nem outro
-
-    println(threeFilters(f, g, h, listOf(1,2,3,4)))
-    println(threeFilters(f, g, h, listOf()))
-    println(threeFilters(f, g, h, listOf(2,2,2,2)))
-    println(threeFilters(f, g, h, listOf(5,5,5,5)))
-    println(threeFilters(f, g, h, listOf(-2,-2,-2,-2)))
+    println(threeFilters(listOf(1,2,3,4)))
+    println(threeFilters(listOf()))
+    println(threeFilters(listOf(2,2,2,2)))
+    println(threeFilters(listOf(5,5,5,5)))
+    println(threeFilters(listOf(-2,-2,-2,-2)))
 }
 
 

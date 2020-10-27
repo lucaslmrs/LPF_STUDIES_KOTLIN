@@ -33,21 +33,19 @@ fun filter(f: (Int)->Boolean, lista: List?): List?{
     } else null
 }
 
-fun twoFilters(f: (Int)->Boolean, lista: List?): Pair<List?, List?>{
+fun twoFilters(lista: List?, f: (Int)->Boolean = {it<4}): Pair<List?, List?>{
     val g = {x: Int -> !f(x)}
     return Pair(filter(f, lista), filter(g, lista))
 }
 
 
 fun main(){
-    val f = {x:Int -> x<4}
-
-    println(twoFilters(f, listOf(1,2,3,4)))
-    println(twoFilters(f, listOf()))
-    println(twoFilters(f, listOf(2,2,2,2)))
-    println(twoFilters(f, listOf(5,5,5,5)))
-    println(twoFilters(f, listOf(-2,-2,-2,-2)))
-    println(twoFilters(f, listOf(7,5,54,34,35,3,2,4665,8485,4858,-255423)))
+    println(twoFilters(listOf(1,2,3,4)))
+    println(twoFilters(listOf()))
+    println(twoFilters(listOf(2,2,2,2)))
+    println(twoFilters(listOf(5,5,5,5)))
+    println(twoFilters(listOf(-2,-2,-2,-2)))
+    println(twoFilters(listOf(7,5,54,34,35,3,2,4665,8485,4858,-255423)))
 }
 
 

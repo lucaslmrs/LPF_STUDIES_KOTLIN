@@ -15,21 +15,20 @@ class List(val info: Int, val next: List?){
 }
 
 fun listOf(vararg elems: Int):List? {
-    return  if (elems.isNotEmpty()) List(elems[0], listOf(*elems.copyOfRange(1, elems.size))) else null
+    return if (elems.isNotEmpty()) List(elems[0], listOf(*elems.copyOfRange(1, elems.size))) else null
 }
 
-fun aceitaEnquanto(f: (Int)->Boolean, lista: List?): List?{
+fun aceitaEnquanto(lista: List?, f: (Int)->Boolean = {it < 3}): List?{
     return if (lista != null){
         if (f(lista.info))
-            List(lista.info, aceitaEnquanto(f, lista.next))
+            List(lista.info, aceitaEnquanto(lista.next))
         else return null
     } else null
 }
 
 fun main(){
-    val f = {x: Int -> x<3}
-    aceitaEnquanto(f, listOf(-1,0,1,2,3,4,5))!!.imprimir()
-    aceitaEnquanto(f, listOf(-3,-3,3,-1,0,1,2,3,4,5))!!.imprimir()
-    aceitaEnquanto(f, listOf(-1,0,1,2,3,4,5))!!.imprimir()
+    aceitaEnquanto(listOf(-1,0,1,2,3,4,5))!!.imprimir()
+    aceitaEnquanto(listOf(-3,-3,3,-1,0,1,2,3,4,5))!!.imprimir()
+    aceitaEnquanto(listOf(-1,0,1,2,3,4,5))!!.imprimir()
     // aceitaEnquanto(f, listOf(3,-1,0,1,2,3,4,5))!!.imprimir() -> retorna uma lista nula por isso nao posso imprimir
 }
